@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SearchApp"
+             x:Class="SearchApp.MainPage"
+             BackgroundColor="Transparent">
+
+
+    <StackLayout BackgroundColor="Transparent" >
+        
+        <StackLayout BackgroundColor="#443e42"  HeightRequest="70" Orientation="Horizontal" >
+            
+            <Button Image="close_icon.png" WidthRequest="80" BackgroundColor="#dcb34a" BorderColor="#dcb34a" VerticalOptions="FillAndExpand" HorizontalOptions="StartAndExpand"  CornerRadius="0"></Button>
+            <Label Text="Search" WidthRequest="70" FontSize="15" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="120,10" FontAttributes="Bold"></Label>
+
+        </StackLayout>
+
+        <StackLayout Margin="15" HeightRequest="100" MinimumHeightRequest="80" BackgroundColor="#f9fafc">
+            <Grid BackgroundColor="White" RowSpacing="-20" ColumnSpacing="5" HorizontalOptions="Center" VerticalOptions="Center" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="200"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+
+                <Label Text="Search" Grid.Row="0" FontAttributes="Bold"></Label>
+                <SearchBar x:Name="SearchBar_Text" Grid.Row="1" Grid.ColumnSpan="2" SearchButtonPressed="SearchBar_OnSearchButtonPressed" TextChanged="SearchBar_Text_OnTextChanged"></SearchBar>
+
+            </Grid>
+        </StackLayout>
+       
+        <StackLayout>
+
+            <ScrollView BackgroundColor="#f9fafc" Margin="15" HeightRequest="600">
+                <ListView x:Name="MyListView"
+                          CachingStrategy="RecycleElement"
+                          SeparatorVisibility="Default"
+                          SeparatorColor="Black"
+                          HasUnevenRows="True"
+                          IsPullToRefreshEnabled="True"
+                          WidthRequest="600"
+                          Margin="10"
+                          ItemTapped="Handle_ItemTapped">
+
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell Height="100" >
+
+                                <StackLayout Orientation="Vertical" HeightRequest="200" >
+
+                                    <StackLayout Orientation="Horizontal" VerticalOptions="Center"  HeightRequest="300">
+
+                                        <StackLayout HeightRequest="100">
+                                            <Image Source="{Binding ImgSource}" HeightRequest="100" VerticalOptions="FillAndExpand" ></Image>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Vertical" HeightRequest="500">
+                                            <Label Text="{Binding Name}"></Label>
+                                            <Label Text="{Binding Status}"></Label>
+                                            <Label Text="{Binding Price}"></Label>
+                                        </StackLayout>
+
+                                    </StackLayout>
+
+                                    <StackLayout>
+
+                                        <BoxView HeightRequest="0.5" WidthRequest="0.5" BackgroundColor="Gray"/>
+
+                                    </StackLayout>
+
+                                </StackLayout>
+
+
+
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+
+
+                </ListView>
+            </ScrollView>
+        </StackLayout>
+
+    </StackLayout>
+
+</ContentPage>
